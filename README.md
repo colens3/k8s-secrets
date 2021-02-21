@@ -14,7 +14,7 @@ Providing secrets within the pods:
     - kubelet sync period + cache propagation delay, where the cache propagation delay depends on the chosen cache type (it equals to watch propagation delay, ttl of cache, or zero correspondingly). [More info](https://kubernetes.io/docs/concepts/configuration/secret/)
 - One way to get around the sync period wait is to update annotations on the pod which will result in secrets value sync. [More info](https://github.com/kubernetes/kubernetes/issues/30189)
 
-## Research Steps
+## Research Steps (CLI)
 - Make sure k8s cluster is up and running. For this research I've used local Docker for desktop single node cluster
 - Build docker image with `docker build --tag k8s-python .`
 - Create secrets with `kubectl apply -f secret.yaml`
@@ -29,6 +29,18 @@ Providing secrets within the pods:
 - Update secret with `kubectl apply -f secret.yaml`
 - Update all pod annotations with `kubectl annotate --overwrite pods --all datetime="$(date)"`
     - This will add datetime annotation with current datetime to all running pods
+- Observe that the secret is updated instantly within the running pod
+
+## Research Steps (CLI and K8S Python Client)
+- Make sure k8s cluster is up and running. For this research I've used local Docker for desktop single node cluster
+- Build docker image with `docker build --tag k8s-python .`
+- Create secrets with `kubectl apply -f secret.yaml`
+- Create pod with `kubectl apply -f pod.yaml`
+    - Pod runs a simple docker container with python app which writes log of secrets value from mapped volume every 5s
+- In another terminal window follow logs for created pod with `kubectl logs k8s-python-pod --follow`
+- Update secret value running the secrets_update.py script
+    - Update the secret var to change the secret value
+    - This will also add secret_updated_at annotation with current datetime to the running pod
 - Observe that the secret is updated instantly within the running pod
 
 <span style="color:yellow">
