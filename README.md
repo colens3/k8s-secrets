@@ -17,16 +17,16 @@ Providing secrets within the pods:
 ## Research Steps (CLI)
 - Make sure k8s cluster is up and running. For this research I've used local Docker for desktop single node cluster
 - Build docker image with `docker build --tag k8s-python .`
-- Create secrets with `kubectl apply -f secret.yaml`
-- Create pod with `kubectl apply -f pod.yaml`
+- Create secrets with `kubectl apply -f kubernetes/secret.yaml`
+- Create pod with `kubectl apply -f kubernetes/pod.yaml`
     - Pod runs a simple docker container with python app which writes log of secrets value from mapped volume every 5s
 - In another terminal window follow logs for created pod with `kubectl logs k8s-python-pod --follow`
 - Update secret value within the secrets.yaml
     - have in mind that the value should be base64, for example: `echo -n 'my-app' | base64`
-- Update secret with `kubectl apply -f secret.yaml`
+- Update secret with `kubectl apply -f kubernetes/secret.yaml`
 - Observe that secrets are not instantly updated within the pod logs, but only after certain period expires (sync)
 - Again update secret value within the secrets.yaml
-- Update secret with `kubectl apply -f secret.yaml`
+- Update secret with `kubectl apply -f kubernetes/secret.yaml`
 - Update all pod annotations with `kubectl annotate --overwrite pods --all datetime="$(date)"`
     - This will add datetime annotation with current datetime to all running pods
 - Observe that the secret is updated instantly within the running pod
@@ -34,8 +34,8 @@ Providing secrets within the pods:
 ## Research Steps (CLI and K8S Python Client)
 - Make sure k8s cluster is up and running. For this research I've used local Docker for desktop single node cluster
 - Build docker image with `docker build --tag k8s-python .`
-- Create secrets with `kubectl apply -f secret.yaml`
-- Create pod with `kubectl apply -f pod.yaml`
+- Create secrets with `kubectl apply -f kubernetes/secret.yaml`
+- Create pod with `kubectl apply -f kubernetes/pod.yaml`
     - Pod runs a simple docker container with python app which writes log of secrets value from mapped volume every 5s
 - In another terminal window follow logs for created pod with `kubectl logs k8s-python-pod --follow`
 - Update secret value running the secrets_update.py script
