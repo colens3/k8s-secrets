@@ -31,6 +31,10 @@ Providing secrets within the pods:
     - This will add datetime annotation with current datetime to all running pods
 - Observe that the secret is updated instantly within the running pod
 
+<span style="color:yellow">
+    TODO: Check are there any negative effects of updating annotations on all pods
+</span>
+
 ## Additional useful commands:
 - `kubectl get pods`
 - `kubectl get secrets`
