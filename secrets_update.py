@@ -5,6 +5,7 @@ from kubernetes import client, config
 def main():
     """Method which will update secret and update annotation through k8s client lib
     """
+
     secret = "updated_user2"
 
     # Generate base64 needed for secret update
