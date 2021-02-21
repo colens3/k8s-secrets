@@ -1,5 +1,4 @@
 # Kubernetes secrets update research
-## Description
 The purpose of this repo is to give details regarding the research for secrets update mapped as a volume inside a pod
 
 ## Research Topic
