@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k8s-python-pod
+spec:
+  containers:
+    - name: k8s-python
+      image: k8s-python:latest
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+      - name: secret-volume
+        mountPath: /etc/secret-volume
+  volumes:
+    - name: secret-volume
+      secret:
+        secretName: test-secret
