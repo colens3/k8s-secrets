@@ -28,7 +28,7 @@ def main():
         }
     )
     # Update annotation on specific pod
-    # it's also possible implement update on all namespaced pods)
+    # it's also possible to implement update on all namespaced pods
     ret = client_v1.patch_namespaced_pod(
         "k8s-python-pod",
         "default",
