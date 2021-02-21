@@ -6,7 +6,7 @@ def main():
     """Method which will update secret and update annotation through k8s client lib
     """
 
-    secret = "updated_user2"
+    secret = "secret_2"
 
     # Generate base64 needed for secret update
     secret_bytes = secret.encode('ascii')

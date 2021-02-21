@@ -19,7 +19,7 @@ Providing secrets within the pods:
 - Build docker image with `docker build --tag k8s-python .`
 - Create secrets with `kubectl apply -f kubernetes/secret.yaml`
 - Create pod with `kubectl apply -f kubernetes/pod.yaml`
-    - Pod runs a simple docker container with python app which writes log of secrets value from mapped volume every 5s
+    - Pod runs a simple docker container with python app which writes log every time secret is changed (pool period is 1s)
 - In another terminal window follow logs for created pod with `kubectl logs k8s-python-pod --follow`
 - Update secret value within the secrets.yaml
     - have in mind that the value should be base64, for example: `echo -n 'my-app' | base64`
@@ -36,7 +36,7 @@ Providing secrets within the pods:
 - Build docker image with `docker build --tag k8s-python .`
 - Create secrets with `kubectl apply -f kubernetes/secret.yaml`
 - Create pod with `kubectl apply -f kubernetes/pod.yaml`
-    - Pod runs a simple docker container with python app which writes log of secrets value from mapped volume every 5s
+    - Pod runs a simple docker container with python app which writes log every time secret is changed (pool period is 1s)
 - In another terminal window follow logs for created pod with `kubectl logs k8s-python-pod --follow`
 - Update secret value running the secrets_update.py script
     - Update the secret var to change the secret value
